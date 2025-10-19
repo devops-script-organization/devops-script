@@ -5,4 +5,4 @@ services:
     image: dhouhalamine/front-session14
     container_name: front_end
     ports:
-      - "4002:80"
+      - "4000:80"
