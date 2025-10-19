@@ -4,5 +4,6 @@ services:
       restart: always
       image: dhouhalamine/front-session14
       container_name: front_end
-      port: 4002:80
-      
+      port: 
+        - "4002:80"
+
