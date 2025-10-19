@@ -1,0 +1,8 @@
+#Front end 
+services:
+    front-app:build: 
+      restart: always
+      image: dhouhalamine/front-session14
+      container_name: front_end
+      port: 4002:80
+      
