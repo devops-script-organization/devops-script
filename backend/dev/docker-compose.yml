@@ -3,33 +3,36 @@ services:
   backend-api:
     image: dhouhalamine/api-session14 
     depends_on:
-      - mongo
+      - mongo-session14  
     container_name: backend-api-container
     env_file:
       - .env
     ports:
       - "3000:3001"
 
-
-  #database mongo- db
-  mongo:
+  #database mongo- db (nom unique)
+  mongo-session14:
     image: mongo
     restart: always
+    container_name: session14-mongo 
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: admin
-
+    volumes:
+      - session14_mongo_data:/data/db 
       
-  #mongo express ui
+  #mongo express ui (port différent)
   mongo-express:
     image: mongo-express
     restart: always
+    container_name: session14-mongo-express 
     ports:
-      - 8081:8081
+      - "8082:8081"
     environment:
-      ME_CONFIG_MONGODB_URL: mongodb://root:admin@mongo:27017/
-      ME_CONFIG_BASICAUTH_ENABLED: true
+      ME_CONFIG_MONGODB_SERVER: mongo-session14
+      ME_CONFIG_MONGODB_PORT: 27017
       ME_CONFIG_BASICAUTH_USERNAME: mongoexpressuser
       ME_CONFIG_BASICAUTH_PASSWORD: mongoexpresspass
 
-
+volumes:
+  session14_mongo_data:
