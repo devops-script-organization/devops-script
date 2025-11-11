@@ -5,8 +5,6 @@ services:
     depends_on: 
       - node_exporter
       - cadvisor
-    ports:
-      - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
